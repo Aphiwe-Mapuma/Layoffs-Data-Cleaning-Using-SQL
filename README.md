@@ -4,30 +4,31 @@
 
 This project focuses on cleaning and preparing a layoffs dataset using MySQL. The purpose of the project was to identify and remove duplicate records, standardize inconsistent data, handle missing and blank values, and remove unnecessary data so that the dataset could be used for further analysis.
 
-The original dataset was preserved while a staging table was created and used for the cleaning process.
+The original dataset was preserved while staging tables were created and used throughout the cleaning process.
 
 <br />
 
 <h2>Data Cleaning Steps</h2>
 
 - <b>Remove duplicates</b>
-  - Identified duplicate records using the `ROW_NUMBER()` window function
+  - Identified duplicate records using the <code>ROW_NUMBER()</code> window function
+  - Used <code>PARTITION BY</code> across multiple columns to identify duplicate records
   - Created a second staging table to identify and remove duplicate rows
 
 - <b>Standardize the data</b>
   - Removed unnecessary spaces from company names
   - Standardized cryptocurrency industry names
   - Cleaned inconsistent country values
-  - Converted date values from text into a proper DATE format
+  - Converted date values from text into a proper <code>DATE</code> format
 
-- <b>Handle null and blank values</b>
-  - Identified NULL and blank values
+- <b>Handle missing and blank values</b>
+  - Identified missing and blank values
   - Standardized blank industry values
   - Populated missing industry values where matching information was available
   - Removed records where both total layoffs and percentage laid off were missing
 
 - <b>Remove unnecessary data</b>
-  - Removed the temporary `row_num` column after the duplicate removal process
+  - Removed the temporary <code>row_num</code> column after the duplicate removal process
 
 <br />
 
@@ -68,31 +69,31 @@ The original layoffs dataset was copied into a staging table so that the origina
 <br/>
 
 <b>2. Identify duplicate records</b><br/>
-The ROW_NUMBER() window function was used to identify duplicate records based on multiple columns.
+The <code>ROW_NUMBER()</code> window function was used with <code>PARTITION BY</code> to identify duplicate records based on multiple columns.
 
 <br/>
 <br/>
 
 <b>3. Remove duplicates</b><br/>
-Duplicate records were removed from the cleaned staging table.
+Duplicate records were identified and removed from the cleaned staging table.
 
 <br/>
 <br/>
 
 <b>4. Standardize inconsistent data</b><br/>
-Company names, industry categories, country values, and dates were cleaned and standardised.
+Company names, industry categories, country values, and dates were cleaned and standardized.
 
 <br/>
 <br/>
 
 <b>5. Handle missing values</b><br/>
-Missing and blank values were investigated and updated where sufficient information was available.
+Missing and blank values were investigated and updated where sufficient matching information was available.
 
 <br/>
 <br/>
 
 <b>6. Remove unnecessary records and columns</b><br/>
-Records with no useful layoffs information were removed and the temporary row number column was dropped.
+Records where both total layoffs and percentage laid off were missing were removed, and the temporary <code>row_num</code> column was dropped.
 
 </p>
 
@@ -109,25 +110,33 @@ The project also used <b>CTEs</b> to make the duplicate identification process e
 </p>
 
 <p>
-Date values were initially stored as text, so <b>STR_TO_DATE()</b> was used to convert them into a proper date format before altering the column to the DATE data type.
+Date values were initially stored as text, so <b>STR_TO_DATE()</b> was used to convert them into a proper date format before altering the column to the <code>DATE</code> data type.
 </p>
+
+<br />
 
 <h2>Outcome</h2>
 
 <p>
-The final dataset was cleaned and prepared for further analysis. The cleaning process improved the consistency of the dataset by removing duplicate records, standardizing values, converting dates to the correct format, addressing missing information where possible, and removing records that did not contain useful layoffs information.
+The dataset was cleaned and prepared for further analysis. The cleaning process improved the consistency of the data by removing duplicate records, standardizing values, converting dates to the correct format, addressing missing information where possible, and removing records that did not contain useful layoffs information.
 </p>
+
+<br />
 
 <h2>Project Files</h2>
 
-- <b>layoffs.sql</b> — SQL queries used for the data cleaning process
-- <b>layoffs.csv</b> — Original dataset
-- <b>layoffs_staging2</b> — Cleaned staging table created during the project
+- <b>Data Cleaning Project.sql</b> — SQL queries used for the data cleaning process
+- <b>layoffs.json</b> — Original dataset used for the project
+- <b>README.md</b> — Project documentation and explanation of the cleaning process
 
 <br />
 
 <h2>What I Learned</h2>
 
 <p>
-This project helped me develop practical experience with SQL data cleaning and understand how raw datasets can contain duplicate, inconsistent, missing, and incorrectly formatted information. I also gained experience using window functions, CTEs, JOINs, UPDATE statements, DELETE statements, and data type conversions to prepare data for analysis.
+This project helped me develop practical experience with SQL data cleaning and understand how raw datasets can contain duplicate, inconsistent, missing, and incorrectly formatted information.
+</p>
+
+<p>
+I also gained experience using window functions, CTEs, JOINs, UPDATE statements, DELETE statements, and data type conversions to prepare data for analysis.
 </p>
