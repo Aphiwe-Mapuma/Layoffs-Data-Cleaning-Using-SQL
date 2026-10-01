@@ -2,9 +2,17 @@
 
 <h2>Description</h2>
 
-This project focuses on cleaning and preparing a layoffs dataset using MySQL. The purpose of the project was to identify and remove duplicate records, standardize inconsistent data, handle missing and blank values, and remove unnecessary data so that the dataset could be used for further analysis.
+This project focuses on cleaning and preparing a layoffs dataset using MySQL. The purpose of the project was to identify and remove duplicate records, standardize inconsistent data, handle missing and blank values and remove unnecessary data so that the dataset could be used for further analysis.
 
 The original dataset was preserved while staging tables were created and used throughout the cleaning process.
+
+<br />
+
+<h2>Dataset</h2>
+
+<p>
+The layoffs dataset used in this project was sourced from <b>Kaggle</b>. The dataset contains information about company layoffs, including company, location, industry, total layoffs, percentage laid off, date, company stage, country and funds raised.
+</p>
 
 <br />
 
@@ -20,9 +28,11 @@ The original dataset was preserved while staging tables were created and used th
   - Standardized cryptocurrency industry names
   - Cleaned inconsistent country values
   - Converted date values from text into a proper <code>DATE</code> format
+  - Converted numeric columns to appropriate data types
 
 - <b>Handle missing and blank values</b>
   - Identified missing and blank values
+  - Converted text <code>'NULL'</code> values into actual SQL <code>NULL</code> values where required
   - Standardized blank industry values
   - Populated missing industry values where matching information was available
   - Removed records where both total layoffs and percentage laid off were missing
@@ -48,6 +58,7 @@ The original dataset was preserved while staging tables were created and used th
 - <b>TRIM()</b>
 - <b>STR_TO_DATE()</b>
 - <b>LIKE</b>
+- <b>IS NULL</b>
 
 <br />
 
@@ -62,8 +73,8 @@ The original dataset was preserved while staging tables were created and used th
 
 <p align="center">
 
-<b>1. Create a staging table</b><br/>
-The original layoffs dataset was copied into a staging table so that the original data could be preserved.
+<b>1. Create staging tables</b><br/>
+The original layoffs dataset was copied into staging tables so that the original data could be preserved while the cleaning process was performed.
 
 <br/>
 <br/>
@@ -75,7 +86,7 @@ The <code>ROW_NUMBER()</code> window function was used with <code>PARTITION BY</
 <br/>
 
 <b>3. Remove duplicates</b><br/>
-Duplicate records were identified and removed from the cleaned staging table.
+Duplicate records were identified and removed from the second staging table.
 
 <br/>
 <br/>
@@ -113,12 +124,16 @@ The project also used <b>CTEs</b> to make the duplicate identification process e
 Date values were initially stored as text, so <b>STR_TO_DATE()</b> was used to convert them into a proper date format before altering the column to the <code>DATE</code> data type.
 </p>
 
+<p>
+Numeric columns were also converted from text to appropriate numeric data types so that the cleaned dataset could be used for calculations and further analysis.
+</p>
+
 <br />
 
 <h2>Outcome</h2>
 
 <p>
-The dataset was cleaned and prepared for further analysis. The cleaning process improved the consistency of the data by removing duplicate records, standardizing values, converting dates to the correct format, addressing missing information where possible, and removing records that did not contain useful layoffs information.
+The dataset was cleaned and prepared for further exploratory data analysis. The cleaning process improved the consistency of the data by removing duplicate records, standardizing values, converting dates and numeric columns to appropriate data types, addressing missing information where possible, and removing records that did not contain useful layoffs information.
 </p>
 
 <br />
@@ -126,17 +141,29 @@ The dataset was cleaned and prepared for further analysis. The cleaning process 
 <h2>Project Files</h2>
 
 - <b>Data Cleaning Project.sql</b> — SQL queries used for the data cleaning process
-- <b>layoffs.json</b> — Original dataset used for the project
+- <b>layoffs.json</b> — Dataset used for the project
 - <b>README.md</b> — Project documentation and explanation of the cleaning process
+
+<br />
+
+<h2>Learning Reference</h2>
+
+<p>
+This project was completed as a learning exercise while following and adapting the <b>Alex The Analyst SQL Data Cleaning</b> project tutorial.
+</p>
+
+<p>
+The tutorial provided guidance on the overall data cleaning workflow and SQL techniques used in the project, while the queries in this repository reflect my own implementation and learning process.
+</p>
 
 <br />
 
 <h2>What I Learned</h2>
 
 <p>
-This project helped me develop practical experience with SQL data cleaning and understand how raw datasets can contain duplicate, inconsistent, missing, and incorrectly formatted information.
+This project helped me develop practical experience with SQL data cleaning and understand how raw datasets can contain duplicate, inconsistent, missing and incorrectly formatted information.
 </p>
 
 <p>
-I also gained experience using window functions, CTEs, JOINs, UPDATE statements, DELETE statements, and data type conversions to prepare data for analysis.
+I also gained practical experience using window functions, CTEs, JOINs, UPDATE statements, DELETE statements, string functions and data type conversions to prepare data for analysis.
 </p>
